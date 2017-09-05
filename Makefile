@@ -14,7 +14,7 @@ build: binary
 	docker-compose build
 	$(MAKE) clean
 
-app-shell: build
+login: build
 	$(call blue, "# Running Shell within App...")
 	docker-compose run app sh
 
