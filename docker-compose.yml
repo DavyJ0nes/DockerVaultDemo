@@ -18,8 +18,6 @@ services:
     command: sh /app-init.sh
     environment:
       - VAULT_ADDR=http://vault:8200
-    ports:
-      - "8080:8080"
     volumes:
       - "apphome:/root"
     depends_on:
