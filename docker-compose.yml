@@ -15,7 +15,7 @@ services:
       - "vault-volume:/vault/file"
 
   app:
-    build: . 
+    build: app/.
     command: sh /vault-init.sh
     environment:
       - VAULT_ADDR=http://vault:8200

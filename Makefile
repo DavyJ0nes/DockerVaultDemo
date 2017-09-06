@@ -5,7 +5,7 @@ service ?= app
 
 binary:
 	$(call blue, "# Building Golang Binary...")
-	docker run --rm -it -v "$(CURDIR)":/go/src/app -w /go/src/app golang:1.8 sh -c 'go get && CGO_ENABLED=0 go build -a --installsuffix cgo --ldflags="-s" -o ${app}'
+	docker run --rm -it -v "$(CURDIR)/app":/go/src/app -w /go/src/app golang:1.8 sh -c 'go get && CGO_ENABLED=0 go build -a --installsuffix cgo --ldflags="-s" -o ${app}'
 
 build: binary
 	$(call blue, "# Building Docker Images From Docker-Compose...")
