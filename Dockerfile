@@ -15,5 +15,4 @@ RUN wget -O /tmp/vault.zip https://releases.hashicorp.com/vault/${VAULT_VERSION}
   && rm /tmp/vault.zip
 ADD app-init.sh /
 ADD vault-demo-example /
-EXPOSE 8080
 CMD ["./vault-demo-example"]

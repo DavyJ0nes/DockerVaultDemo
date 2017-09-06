@@ -1,50 +1,34 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"os/exec"
-	"strings"
-
-	"github.com/hashicorp/vault/api"
 )
 
 func main() {
-	writeSecret()
-	readSecret()
-}
+	// Setting up Some argument Flags that specify the secret key pair
+	secretKeyPtr := flag.String("secret-key", "hello", "secret key")
+	secretValPtr := flag.String("secret-value", "world", "secret value")
+	flag.Parse()
 
-func writeSecret() {
-	fmt.Println("### Writing Secret...")
-	cmd := exec.Command("vault", "write", "secret/hello", "value=world")
-	err := cmd.Run()
+	// Set up Vault API Client
+	client, err := initVaultClient()
 	if err != nil {
-		log.Fatal("Error with Running Write Command", err)
-	}
-}
-
-func readSecret() {
-	fmt.Println("### Reading Secret...")
-	conf := api.DefaultConfig()
-	client, err := api.NewClient(conf)
-
-	if err != nil {
-		log.Fatal("Error with Creating Vault Client", err)
+		log.Fatal("Error Creating API Client:", err)
 	}
 
-	token, err := ioutil.ReadFile("/root/.vault-token")
-
+	// Write Secret To Vault
+	err = writeSecret(client, *secretKeyPtr, *secretValPtr)
 	if err != nil {
-		log.Fatal("Error Reading Vault Token", err)
+		log.Fatal("Error Writing Secret To Vault:", err)
 	}
 
-	client.SetToken(strings.Trim(string(token), "\n"))
-	secret, err := client.Logical().Read("secret/hello")
-
+	// Read Secret From Vault
+	secretString, err := readSecret(client, *secretKeyPtr)
 	if err != nil {
-		log.Fatal("Error with Creating Vault Client", err)
+		log.Fatal("Error Reading Secret From Vault:", err)
 	}
 
-	fmt.Printf("Secret = %s\n", secret.Data["value"])
+	fmt.Println(secretString)
 }
