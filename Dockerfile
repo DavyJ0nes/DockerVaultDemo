@@ -1,6 +1,6 @@
 FROM alpine:3.1
 LABEL Name=davyj-ao-training-api
-LABEL Version=0.0.1
+LABEL Version=0.0.2
 ENV VAULT_VERSION 0.8.1
 
 MAINTAINER DavyJ0nes <davy.jones@me.com>

@@ -16,6 +16,7 @@ func initVaultClient() (*api.Client, error) {
 		return client, err
 	}
 
+	// This is a bit hacky. Having to read token from filesystem
 	token, err := ioutil.ReadFile("/root/.vault-token")
 	if err != nil {
 		return client, err
@@ -28,6 +29,7 @@ func initVaultClient() (*api.Client, error) {
 
 // writeSecret writes the requested secret to Vault
 func writeSecret(client *api.Client, secretKey, secretVal string) error {
+	// Status Line to help with demo
 	fmt.Println("### Writing Secret To Vault...")
 	secretPath := fmt.Sprintf("secret/%s", secretKey)
 
@@ -44,6 +46,7 @@ func writeSecret(client *api.Client, secretKey, secretVal string) error {
 
 // readSecret Prints the Secret Value to console
 func readSecret(client *api.Client, secretKey string) (string, error) {
+	// Status Line to help with demo
 	fmt.Println("### Reading Secret From Vault...")
 
 	key := fmt.Sprintf("secret/%s", secretKey)

@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   vault:
     image: vault
     command: server
@@ -18,6 +17,7 @@ services:
     command: sh /app-init.sh
     environment:
       - VAULT_ADDR=http://vault:8200
+    # This is pretty hacky to help deal with getting the vault token
     volumes:
       - "apphome:/root"
     depends_on:

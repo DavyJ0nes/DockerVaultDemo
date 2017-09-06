@@ -1,9 +1,7 @@
 all: run
 
 app = vault-demo-example
-version ?= latest
 service ?= app
-local_port = 8080 
 
 binary:
 	$(call blue, "# Building Golang Binary...")
