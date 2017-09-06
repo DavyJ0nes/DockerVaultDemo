@@ -43,7 +43,7 @@ clean-up:
 	docker volume rm vaultdemo_vault-volume
 
 clean:
-	@rm -f ${app}
+	@rm -f app/${app}
 
 define blue
   @tput setaf 4

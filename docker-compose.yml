@@ -9,8 +9,6 @@ services:
     environment:
       - VAULT_ADDR=http://0.0.0.0:8200
       - VAULT_LOCAL_CONFIG={"backend":{"file":{"path":"/vault/file"}},"default_lease_ttl":"168h","max_lease_ttl":"720h","listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}}
-    expose:
-      - 8200
     volumes:
       - "vault-volume:/vault/file"
 
