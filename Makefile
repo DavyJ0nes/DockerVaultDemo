@@ -12,18 +12,6 @@ build: binary
 	docker-compose build
 	$(MAKE) clean
 
-login: build
-	$(call blue, "# Running Shell within App...")
-	docker-compose run app sh
-
-stop:
-	$(call blue, "# Stopping and Killing Containers...")
-	docker-compose kill
-
-list-secrets:
-	$(call blue, "# Listing Secret Keys in Vault...")
-	docker-compose run app sh -c "vault list secret"
-
 go: build
 	$(call blue, "# Starting Stack...")
 	docker-compose up -d
@@ -36,12 +24,23 @@ logs:
 	$(call blue, "# Outputting Logs...")
 	docker-compose logs ${service}
 
+stop:
+	$(call blue, "# Stopping and Killing Containers...")
+	docker-compose kill
+
+login: build
+	$(call blue, "# Running Shell within App...")
+	docker-compose run app sh
+
+list-secrets:
+	$(call blue, "# Listing Secret Keys in Vault...")
+	docker-compose run app sh -c "vault list secret"
+
 clean-up:
 	$(call blue, "# Cleaning Up Environment...")
 	docker-compose kill && docker-compose rm -f -v
 	docker volume rm vaultdemo_apphome
 	docker volume rm vaultdemo_vault-volume
-
 
 clean:
 	@rm -f ${app}
