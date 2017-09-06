@@ -34,5 +34,10 @@ vault write secret/funtimes value=always
 vault read secret/funtimes
 ```
 
+## Requirements
+- [Docker v17.06.1](https://docs.docker.com/engine/installation/)
+- [Golang v1.8](https://golang.org/doc/install)
+- [Go Dep for Go Dependencies](https://github.com/golang/dep)
+
 ## License
 MIT

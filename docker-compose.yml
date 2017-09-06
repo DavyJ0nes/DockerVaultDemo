@@ -11,10 +11,12 @@ services:
       - VAULT_LOCAL_CONFIG={"backend":{"file":{"path":"/vault/file"}},"default_lease_ttl":"168h","max_lease_ttl":"720h","listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":1}}}
     expose:
       - 8200
+    volumes:
+      - "vault-volume:/vault/file"
 
   app:
     build: . 
-    command: sh /app-init.sh
+    command: sh /vault-init.sh
     environment:
       - VAULT_ADDR=http://vault:8200
     # This is pretty hacky to help deal with getting the vault token
@@ -25,3 +27,4 @@ services:
 
 volumes:
   apphome:
+  vault-volume:
