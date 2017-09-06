@@ -1,3 +1,4 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/DavyJ0nes/DockerVaultDemo)](https://goreportcard.com/report/github.com/DavyJ0nes/DockerVaultDemo)
 # Using Hashicorp Vault within a Docker environment
 
 ## Description
