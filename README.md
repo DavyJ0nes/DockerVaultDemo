@@ -53,6 +53,9 @@ vault list secret
 ```
 
 ## TODO
+- [x] Add Persistant Volumes to Vault
+- [ ] Add Consul to improve orchestration
+- [ ] Clusterise Vault for HA example
 
 ## Requirements
 - [Docker v17.06.1](https://docs.docker.com/engine/installation/)
