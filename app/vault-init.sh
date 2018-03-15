@@ -11,24 +11,24 @@
 
 # initVaultServer Initialises the Vault Server
 initVaultServer() {
-  printf "\n# Initialising Vault Server...\n"
+  printf "\\n# Initialising Vault Server...\\n"
   vault init > /root/vault-keys
 }
 
 # unsealVaultServer unseals the Vault Server
 unsealVaultServer() {
-  printf "\n# Unsealing Vault Server...\n"
-  printf "\n## Running 1st Unseal of Vault Server...\n"
+  printf "\\n# Unsealing Vault Server...\\n"
+  printf "\\n## Running 1st Unseal of Vault Server...\\n"
   # shellcheck disable=SC2046
-  vault unseal $(grep 'Key 1:' /root/vault-keys | awk '{print $NF}')
-  printf "\n## Running 2nd Unseal of Vault Server...\n"
+  vault unseal "$(grep 'Key 1:' /root/vault-keys | awk '{print $NF}')"
+  printf "\\n## Running 2nd Unseal of Vault Server...\\n"
   # shellcheck disable=SC2046
-  vault unseal $(grep 'Key 2:' /root/vault-keys | awk '{print $NF}')
-  printf "\n## Running 3rd Unseal of Vault Server...\n"
+  vault unseal "$(grep 'Key 2:' /root/vault-keys | awk '{print $NF}')"
+  printf "\\n## Running 3rd Unseal of Vault Server...\\n"
   # shellcheck disable=SC2046
-  vault unseal $(grep 'Key 3:' /root/vault-keys | awk '{print $NF}')
+  vault unseal "$(grep 'Key 3:' /root/vault-keys | awk '{print $NF}')"
   grep 'Initial Root Token:' /root/vault-keys | awk '{print $NF}' > /root/.vault-token
-  printf "\n#############################################\n"
+  printf "\\n#############################################\\n"
 }
 
 ##---------- SETUP ----------##
@@ -56,5 +56,5 @@ fi
 
 echo "# Starting App..."
 ./vault-demo-example -secret-key="$random_key" -secret-value="$random_secret"
-printf "\n#############################################\n"
+printf "\\n#############################################\\n"
 

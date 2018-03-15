@@ -1,0 +1,7 @@
+{
+  "client_addr": "0.0.0.0",
+  "server": true,
+  "ui" : true,
+  "bootstrap": true,
+  "log_level": "DEBUG"
+}
