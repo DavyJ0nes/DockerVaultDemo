@@ -55,7 +55,7 @@ vault list secret
 
 ## TODO
 - [x] Add Persistant Volumes to Vault
-- [ ] Add Consul to improve orchestration
+- [x] Add Consul to improve orchestration
 - [ ] Clusterise Vault for HA example
 
 ## Requirements
